@@ -1,0 +1,52 @@
+{% extends "index.html" %}
+{% block title %}
+    Registro de equinos
+{% endblock %}
+
+{% block content %}
+    <h2>Esta es la pagina para el registro de los caballos</h2>
+
+    <div>
+        Fecha: {{ fecha_actual }}
+    </div>
+
+    <div>
+        Chip: <textarea></textarea>
+        Raza id:
+        <select>
+            <option>Seleccione raza</option>
+            <option>Raza a</option>
+            <option>Raza b</option>
+        </select>
+    </div>
+    <div>
+         Nombre: <textarea></textarea>
+    </div>
+    <div>
+        Fecha Nacimiento<br>
+        Día:
+        <select>
+            <option>Seleccione</option>
+        </select>
+        Mes:
+        <select>
+        {% for mes in meses_del_anio %}
+            <option>{{ mes }}</option>
+        {% endfor %}
+        </select>
+        Anio:
+        <select>
+            <option>Seleccione</option>
+        </select>
+    </div>
+    <div>
+         Adv manejo: <textarea></textarea>
+         Sexo:
+         <select>
+        {% for sexo in tipo_sexo %}
+            <option>{{ sexo }}</option>
+        {% endfor %}
+        </select>
+         Color:<textarea></textarea>
+    </div>
+{% endblock %}

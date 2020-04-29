@@ -1,0 +1,58 @@
+{% extends "index.html" %}
+{% block title %}
+    Registro de equinos
+{% endblock %}
+
+{% block content %}
+    <h1>Registro Historia Clinica </h1>
+
+    <div>
+        <div>
+            Numero registro conaulta:
+            <textarea></textarea>
+        </div>
+        <div>
+            Fecha registro:
+            Día:
+            <select>
+                <option>Seleccione</option>
+            </select>
+            Mes:
+            <select>
+            {% for mes in meses_del_anio %}
+                <option>{{ mes }}</option>
+            {% endfor %}
+            </select>
+            Anio:
+            <select>
+                <option>Seleccione</option>
+            </select>
+        </div>
+        <div>
+            Numero Veterinario <textarea></textarea>
+        </div>
+        <div>
+            Frecuencia cardiaca <textarea></textarea>
+            Frecuencia respiratoria <textarea></textarea>
+            Pulso <textarea></textarea>
+            Temperatura <textarea></textarea>
+        </div>
+        <div>
+            Est_hidratacion <textarea></textarea>
+            Porc hidratacion <textarea></textarea>
+            Peso <textarea></textarea> Kg.
+            Conjuntival <textarea></textarea>
+        </div>
+        <div>
+            Oral: <textarea></textarea>
+            Vulva/Prepucio <textarea></textarea>
+            Rectal:
+            Ojos:
+        </div>
+        <div>
+            Oidos: <textarea></textarea>
+            Nod linfaticos: <textarea></textarea>
+        </div>
+    </div>
+
+{%  endblock %}
