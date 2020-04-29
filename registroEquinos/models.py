@@ -5,7 +5,7 @@ class Usuarios(models.Model):
     usuario = models.CharField(max_length=10)
     contrasena = models.CharField(max_length=16)
 
-    #video 15
+    #video 15 pildoras informaticas
     def __str__(self):
         return 'El usuario es: %s y la contrasena es: %s' %(self.usuario, self.contrasena)
 
