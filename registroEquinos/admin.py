@@ -12,12 +12,17 @@ admin.site.register(Usuarios)
 
 class RazaAdmin(admin.ModelAdmin):
     list_display = ("nom_raza", "des_raza")
+    search_fields = ("id", "nom_raza")
+    list_filter = ("nom_raza",)
 
 class ComportamientoAdmin(admin.ModelAdmin):
     list_display = ("nom_comp", "des_comp")
 
 class EquinoAdmin(admin.ModelAdmin):
     list_display = ("raza_id", "comp_id", "nom_equino", "fec_nacimiento", "adv_manejo", "sexo", "color")
+    search_fields = ("id", "nom_equino")
+    list_filter = ("fec_nacimiento",)
+    date_hierarchy = "fec_nacimiento"
 
 class DisciplinaDeportivaAdmin(admin.ModelAdmin):
     list_display = ("disciplina", "descripcion_dis")
