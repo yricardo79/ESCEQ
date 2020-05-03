@@ -3,10 +3,30 @@ from django.http import HttpResponse
 from django.template import Template, Context
 from django.shortcuts import render
 from django.template.loader import get_template
+from registroEquinos.models import Equino
+
 import datetime
 
 meses = ["Seleccione de mes", "Enero", "Febreo", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre",
          "Octubre", "Noviembre", "Diciembre"]
+
+
+def busqueda_equinos(request):
+    return render(request, "busqueda_equinos.html")
+
+
+def bus_ser_equ(request):
+    # ctrl info form
+    if request.GET["txt_caballo"]:
+        #mensaje = "Caballo búscado. %r" %request.GET["txt_caballo"]
+
+        texto_caballo = request.GET["txt_caballo"]
+        #texto_caballo: object = request.GET["txt_caballo"]
+        equinos = Equino.objects.filter(nom_equino__icontains=texto_caballo)
+        return render(request, "resultado_equino.html", {"equinos": equinos, "query": equinos})
+    else:
+        mensaje = "No se ha realizado ninguna búsqueda!"
+    return HttpResponse(mensaje)
 
 
 def index(request):
@@ -23,7 +43,6 @@ def registroEquino(request):
 
 
 def regHistoriaClinica(request):
-
     return render(request, 'historiaClinica.html', {'meses_del_anio': meses})
 
 

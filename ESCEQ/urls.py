@@ -21,8 +21,11 @@ from registroEquinos.views import saludo, despedida, registroEquino, regHistoria
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('busqueda_equinos/', views.busqueda_equinos),
+    path('buscar/', views.bus_ser_equ),
     path('saludo/', saludo),
     path('despedida/', despedida),
     path('registroEquino/', registroEquino),
     path('regHistoriaClinica/', regHistoriaClinica),
+
 ]

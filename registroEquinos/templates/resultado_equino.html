@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado del Equino búscado</title>
+</head>
+<body>
+    <div>
+        El nombre del caballo buscado: <strong>{{ query }}</strong>
+        {% if equinos %}
+            Caballos encontrados: {{ equinos|length }} caballos
+            <ul>
+                {% for equino in equinos %}
+                    <li>{{ equino.id }} &nbsp; {{ equino.nom_equino }} &nbsp; {{ equino.fec_nacimiento }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            No existe el caballo!
+        {%  endif %}
+    </div>
+</body>
+</html>
