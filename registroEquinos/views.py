@@ -4,6 +4,9 @@ from django.template import Template, Context
 from django.shortcuts import render
 from django.template.loader import get_template
 from registroEquinos.models import Equino
+from django.core.mail import send_mail
+from django.conf import settings
+from registroEquinos.forms import formularioContacto
 
 import datetime
 
@@ -18,15 +21,45 @@ def busqueda_equinos(request):
 def bus_ser_equ(request):
     # ctrl info form
     if request.GET["txt_caballo"]:
-        #mensaje = "Caballo búscado. %r" %request.GET["txt_caballo"]
-
+        # mensaje = "Caballo búscado. %r" %request.GET["txt_caballo"]
         texto_caballo = request.GET["txt_caballo"]
-        #texto_caballo: object = request.GET["txt_caballo"]
-        equinos = Equino.objects.filter(nom_equino__icontains=texto_caballo)
-        return render(request, "resultado_equino.html", {"equinos": equinos, "query": equinos})
+        if len(texto_caballo) > 20:
+            mensaje = "Busqueda deamasiado larga"
+        else:
+            # texto_caballo: object = request.GET["txt_caballo"]
+            equinos = Equino.objects.filter(nom_equino__icontains=texto_caballo)
+            return render(request, "resultado_equino.html", {"equinos": equinos, "query": equinos})
     else:
         mensaje = "No se ha realizado ninguna búsqueda!"
     return HttpResponse(mensaje)
+
+
+def Contacto(request):
+    if request.method == "POST":
+        #Guarda la info del formulario
+        miFormulario = formularioContacto(request.POST)
+
+        if miFormulario.is_valid():
+            infForm = miFormulario.cleaned_data
+            send_mail(infForm['asunto'], infForm['mensaje'],
+                      infForm.get('correo', 'esceq.comentarios.app@gmail.com'),
+                      ['esceq.comentarios.app@gmail.com'],)
+            return render(request, "gracias.html")
+    else:
+        #Constr formulario vacio
+        miFormulario = formularioContacto()
+    return render(request, "formularioContacto.html", {"form": miFormulario})
+
+
+        #subject = request.POST["txt_asunto"]
+        #message = request.POST["txt_mensaje"] + " correo de contacto: " + request.POST["txt_correo"]
+        ## Correo de donde viene
+        #email_from = settings.EMAIL_HOST_USER
+        ## Donde se quiera que vaya la info
+        #recipient_list = ["esceq.comentarios.app@gmail.com"]
+        #send_mail(subject, message, email_from, recipient_list)
+        #return render(request, "gracias.html")
+    #return render(request, "contacto.html")
 
 
 def index(request):

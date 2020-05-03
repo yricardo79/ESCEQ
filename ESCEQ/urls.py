@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('busqueda_equinos/', views.busqueda_equinos),
     path('buscar/', views.bus_ser_equ),
+    path('contacto/', views.Contacto),
+
     path('saludo/', saludo),
     path('despedida/', despedida),
     path('registroEquino/', registroEquino),
