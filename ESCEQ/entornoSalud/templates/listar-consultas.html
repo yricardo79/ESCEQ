@@ -1,0 +1,132 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %} Listado de consultas {% endblock %}
+{% block breadcrumb %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Consulta clínica</h1>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Table</a></li>
+                                <li class="active">Data table</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Listado de Listado de consultas</strong>
+                    </div>
+                    <div class="card-body">
+                        <div id="bootstrap-data-table_wrapper"
+                             class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                            <div class="row">
+                                <div class="col-sm-12"><!-- PARA FILTROS --></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-actions form-group">
+                                        <a href="{% url 'crear-consulta' %}"
+                                           class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-arrow-left"></i>
+                                            REGISTRAR
+                                        </a>
+                                    </div>
+                                    {% if object_list %}
+                                        <table class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">Id</th>
+                                                <th scope="col">chip_equino</th>
+                                                <th scope="col">fecha</th>
+                                                <th scope="col">historia_clinica</th>
+                                                <th scope="col">frec_cardiaca</th>
+                                                <th scope="col">frec_respiratoria</th>
+                                                <th scope="col">pulso</th>
+                                                <th scope="col">temperatura</th>
+                                                <th scope="col">est_hidratacion</th>
+                                                <th scope="col">porc_deshidrat</th>
+                                                <th scope="col">peso</th>
+                                                <th scope="col">conjuntival</th>
+                                                <th scope="col">oral</th>
+                                                <th scope="col">vulva_prepucio</th>
+                                                <th scope="col">rectal</th>
+                                                <th scope="col">ojos</th>
+                                                <th scope="col">oidos</th>
+                                                <th scope="col">nod_linfaticos</th>
+                                                <th scope="col">Editar</th>
+                                                <th scope="col">Eliminar</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for consulta in consultas %}
+                                                <tr>
+                                                    <td scope="row">{{ consulta.id_consulta }}</td>
+                                                    <td scope="row">{{ consulta.chip_equino }}</td>
+                                                    <td scope="row">{{ consulta.fecha }}</td>
+                                                    <td scope="row">{{ consulta.historia_clinica }}</td>
+                                                    <td scope="row">{{ consulta.frec_cardiaca }}</td>
+                                                    <td scope="row">{{ consulta.frec_respiratoria }}</td>
+                                                    <td scope="row">{{ consulta.pulso }}</td>
+                                                    <td scope="row">{{ consulta.temperatura }}</td>
+                                                    <td scope="row">{{ consulta.est_hidratacion }}</td>
+                                                    <td scope="row">{{ consulta.porc_deshidrat }}</td>
+                                                    <td scope="row">{{ consulta.peso }}</td>
+                                                    <td scope="row">{{ consulta.conjuntival }}</td>
+                                                    <td scope="row">{{ consulta.oral }}</td>
+                                                    <td scope="row">{{ consulta.vulva_prepucio }}</td>
+                                                    <td scope="row">{{ consulta.rectal }}</td>
+                                                    <td scope="row">{{ consulta.ojos }}</td>
+                                                    <td scope="row">{{ consulta.oidos }}</td>
+                                                    <td scope="row">{{ consulta.nod_linfaticos }}</td>
+                                                    <td scope="row">
+                                                        <a href="{% url 'editar-consulta' consulta.id_consulta %}"
+                                                           class="btn btn-outline-success btn-sm">
+                                                            EDITAR
+                                                            <i class="fas fa-save"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td scope="row">
+                                                        <a href="{% url 'consulta_confirm_delete' consulta.id_consulta %}"
+                                                           class="btn btn-outline-danger btn-sm">
+                                                            ELIMINAR
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    {% else %}
+                                        <h1>No existe registro de consultas</h1>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">Paginador</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- .animated -->
+{% endblock %}

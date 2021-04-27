@@ -4,10 +4,10 @@ import pymysql
 class DataBase:
     def __init__(self):
         self.connection = pymysql.connect(
-            host = 'localhost', #ip
-            user = 'root',
-            password = 'hola1234',
-            db = 'ESCEQ'
+            host='localhost', #ip
+            user='root',
+            password='1234',
+            db='ESCEQ'
         )
 
         #cursor

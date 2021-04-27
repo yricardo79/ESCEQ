@@ -1,0 +1,578 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %} Registro de variables {% endblock %}
+{% block breadcrumb %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Dashboard</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Table</a></li>
+                                <li class="active">Data table</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-9 offset-md-3 mr-auto ml-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Registro de variables</strong>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted m-b-15">
+                            Módulo para el registro de las variables <strong>Clínicas</strong> y de
+                            <strong>Manejo</strong> de equinos
+                        </p>
+                        <div id="resultado_calculado" class="row" style="display: ">
+                            <div class="col-md-12">
+                                <section class="card">
+                                    <div class="twt-feed bg-success">
+                                        <div class="media">
+                                            <div class="media-left media-middle">
+                                                <span class="fa-stack fa-3x text-center">
+                                                    <i class="fas fa-chess-knight"></i>
+                                                </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="text-light">
+                                                    Deacuerdo a las variables registradas el puntaje
+                                                    predictivo es <strong>65.2</strong>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                       <!-- buscador -->
+                        <div id="bucador" style="display: ">
+                            <div class="form-group">
+                                Buscar caballo
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="fas fa-search"></i></div>
+                                    <input class="form-control" id="myInput" type="text" placeholder="Buscar...">
+                                </div>
+                            </div>
+                            <div class="form-actions form-group">
+                                <button type="submit" class="btn btn-outline-success btn-sm float-right">
+                                    BUSCAR
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="tabs_variables" style="display: ">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-clinica-tab" data-toggle="pill"
+                                       href="#pills-clinica"
+                                       role="tab" aria-controls="pills-clinica" aria-selected="true">Clínicas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-manejo-tab" data-toggle="pill" href="#pills-manejo"
+                                       role="tab" aria-controls="pills-manejo" aria-selected="false">Manejo</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <!-- Variables clínicas-->
+                                <div class="tab-pane fade show active" id="pills-clinica" role="tabpanel"
+                                     aria-labelledby="pills-clinica-tab">
+                                    <br>
+                                    <div id="claudicaciones">
+                                        <h3>Claudaciones</h3>
+                                        <hr>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Presencia de claudicaciones</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check">
+                                                    <div class="radio">
+                                                        <label for="claudicacion_1" class="form-check-label ">
+                                                            <input type="radio" id="claudicacion_1" name="radios"
+                                                                   value="option1"
+                                                                   class="form-check-input">No
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label for="claudicacion_2" class="form-check-label ">
+                                                            <input type="radio" id="claudicacion_2" name="radios"
+                                                                   value="option2"
+                                                                   class="form-check-input">Sí
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            Grado de claudicación
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-id-card-alt"></i></div>
+                                                <select name="select" id="grado_claudi" class="form-control">
+                                                    <option value="-1">Seleccione grado</option>
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            Miembro afectado
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-id-card-alt"></i></div>
+                                                <input type="text" name="miembro_afectado" class="form-control"
+                                                       placeholder="Digite miembro afectado" id="miembro_afectado"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div id="presencia_sangre">
+                                        <h3>Presencia de sangre</h3>
+                                        <hr>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Presencia de sangre</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check">
+                                                    <div class="radio">
+                                                        <label for="radio1" class="form-check-label ">
+                                                            <input type="radio" id="presencia_sangre_1" name="radios"
+                                                                   value="presencia_sangre_1"
+                                                                   class="form-check-input">No
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label for="radio2" class="form-check-label ">
+                                                            <input type="radio" id="presencia_sangre_2" name="radios"
+                                                                   value="presencia_sangre_2"
+                                                                   class="form-check-input">Sí
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Olleres</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check">
+                                                    <div class="radio">
+                                                        <label for="olleres_1" class="form-check-label ">
+                                                            <input type="radio" id="rolleres_1" name="radios"
+                                                                   value="option1"
+                                                                   class="form-check-input">No
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label for="olleres_2" class="form-check-label ">
+                                                            <input type="radio" id="olleres_2" name="radios"
+                                                                   value="option2"
+                                                                   class="form-check-input">Sí
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Boca</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check">
+                                                    <div class="radio">
+                                                        <label for="radio1" class="form-check-label ">
+                                                            <input type="radio" id="boca_1" name="radios"
+                                                                   value="option1"
+                                                                   class="form-check-input">No
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label for="radio2" class="form-check-label ">
+                                                            <input type="radio" id="boca_2" name="radios"
+                                                                   value="option2"
+                                                                   class="form-check-input">Sí
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Heridas sangrantes</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check">
+                                                    <div class="radio">
+                                                        <label for="heridas_sangrantes_1" class="form-check-label ">
+                                                            <input type="radio" id="heridas_sangrantes_1" name="radios"
+                                                                   value="option1"
+                                                                   class="form-check-input">No
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label for="heridas_sangrantes_2" class="form-check-label ">
+                                                            <input type="radio" id="heridas_sangrantes_2" name="radios"
+                                                                   value="option2"
+                                                                   class="form-check-input">Sí
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="evidenica_fatiga">
+                                        <h3>Evidenica fatiga</h3>
+                                        <hr>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Evidencia fatiga o sudoración</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check">
+                                                    <div class="radio">
+                                                        <label for="evidencia_fat_sud_1" class="form-check-label ">
+                                                            <input type="radio" id="evidencia_fat_sud_1" name="radios"
+                                                                   value="option1"
+                                                                   class="form-check-input">No
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label for="evidencia_fat_sud_2" class="form-check-label ">
+                                                            <input type="radio" id="evidencia_fat_sud_2" name="radios"
+                                                                   value="option2"
+                                                                   class="form-check-input">Sí
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions form-group">
+                                        <button type="submit" class="btn btn-outline-success btn-sm float-right">
+                                            SIGUIENTE
+                                            <i class="fas fa-long-arrow-alt-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- Variables de manejo-->
+                                <div class="tab-pane fade" id="pills-manejo" role="tabpanel"
+                                     aria-labelledby="pills-manejo-tab">
+                                    <br>
+                                    <div id="alimetacion">
+                                        <h3>Alimentación</h3>
+                                        <hr>
+                                        <div class="form-group">
+                                            Cantidad de grano
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                                <input type="text" name="grano" class="form-control"
+                                                       placeholder="Ingrese Cantidad en kilogramos" id="grano"
+                                                       maxlength="255"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            Cantidad de forraje
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                                <input type="text" name="forraje" class="form-control"
+                                                       placeholder="Ingrese Cantidad en kilogramos" id="forraje"
+                                                       maxlength="255"
+                                                       required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div id="suplemnto">
+                                        <h3>Suplemento</h3>
+                                        <hr>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Suplemento</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check">
+                                                    <div class="radio">
+                                                        <label for="suplemento_1" class="form-check-label ">
+                                                            <input type="radio" id="suplemento_1" name="radios"
+                                                                   value="option1"
+                                                                   class="form-check-input">No
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label for="suplemento_2" class="form-check-label ">
+                                                            <input type="radio" id="suplemento_2" name="radios"
+                                                                   value="option2"
+                                                                   class="form-check-input">Sí
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Vía oral</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check">
+                                                    <div class="radio">
+                                                        <label for="sup_oral_1" class="form-check-label ">
+                                                            <input type="radio" id="sup_oral_1" name="radios"
+                                                                   value="option1"
+                                                                   class="form-check-input">No
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label for="sup_oral_2" class="form-check-label ">
+                                                            <input type="radio" id="sup_oral_2" name="radios"
+                                                                   value="option2"
+                                                                   class="form-check-input">Sí
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Vía intravenosa</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check">
+                                                    <div class="radio">
+                                                        <label for="sup_intravenoso_1" class="form-check-label">
+                                                            <input type="radio" id="sup_intravenoso_1" name="radios"
+                                                                   value="option1"
+                                                                   class="form-check-input">No
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label for="sup_intravenoso_2" class="form-check-label">
+                                                            <input type="radio" id="sup_intravenoso_2" name="radios"
+                                                                   value="option2"
+                                                                   class="form-check-input">Sí
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div id="horario_de_dieta">
+                                        <h3>Horario de dieta</h3>
+                                        <hr>
+                                        <div class="form-group">
+                                            Veces al día
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                                <input type="text" name="dieta_veces_dia" class="form-control"
+                                                       placeholder="Digite cantidad veces al día" id="dieta_veces_dia"
+                                                       maxlength="255" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            Horarios
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                                <input type="text" name="dieta_horarios" class="form-control"
+                                                       placeholder="Digite cantidad veces al día" id="dieta_horarios"
+                                                       maxlength="255" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div id="calentamiento_tiempo_travbajo">
+                                        <h3>Calentamiento previo y tiempo de trabajo</h3>
+                                        <hr>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Calentamiento previo</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check">
+                                                    <div class="radio">
+                                                        <label for="calentamiento_previo_1" class="form-check-label ">
+                                                            <input type="radio" id="calentamiento_previo_1"
+                                                                   name="radios"
+                                                                   value="option1"
+                                                                   class="form-check-input">No
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label for="calentamiento_previo_2" class="form-check-label ">
+                                                            <input type="radio" id="calentamiento_previo_2"
+                                                                   name="radios"
+                                                                   value="option2"
+                                                                   class="form-check-input">Sí
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            Hora calentamiento
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                                <input type="text" name="hora_calentamiento" class="form-control"
+                                                       placeholder="Ingrese nombre de la raza" id="hora_calentamiento"
+                                                       maxlength="255" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            Minuto calentamiento
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                                <input type="text" name="minuto_calentamiento" class="form-control"
+                                                       placeholder="Ingrese nombre de la raza" id="minuto_calentamiento"
+                                                       maxlength="255" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            Cantidad horas
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                                <input type="text" name="trabajo_cantidad_horas" class="form-control"
+                                                       placeholder="Ingrese nombre de la raza"
+                                                       id="trabajo_cantidad_horas"
+                                                       maxlength="255" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            Cantidad diaria
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                                <input type="text" name="trabajo_cantidad_diaria" class="form-control"
+                                                       placeholder="Ingrese nombre de la raza"
+                                                       id="trabajo_cantidad_diaria"
+                                                       maxlength="255" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            Cantidad semanal
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                                <input type="text" name="trabajo_cantidad_semanal" class="form-control"
+                                                       placeholder="Ingrese nombre de la raza"
+                                                       id="trabajo_cantidad_semanal"
+                                                       maxlength="255" required="">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3">
+                                                <label class=" form-control-label">Trabajo en potrero o
+                                                    camniador</label>
+                                            </div>
+                                            <div class="col col-md-9">
+                                                <div class="form-check">
+                                                    <div class="radio">
+                                                        <label for="radio1" class="form-check-label ">
+                                                            <input type="radio" id="trabajo_pot_cam_1"
+                                                                   name="radios"
+                                                                   value="option1"
+                                                                   class="form-check-input">No
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label for="radio2" class="form-check-label ">
+                                                            <input type="radio" id="trabajo_pot_cam_2"
+                                                                   name="radios"
+                                                                   value="option2"
+                                                                   class="form-check-input">Sí
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            Tiempo potrero o caminador horas
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                                <input type="text" name="tiempo_pot_cam_horas" class="form-control"
+                                                       placeholder="tiempo_pot_cam_horas" id="trabajo_cantidad_semanal"
+                                                       maxlength="255" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            Tiempo potrero o caminador minutos
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                                <input type="text" name="tiempo_pot_cam_mins" class="form-control"
+                                                       placeholder="tiempo potrero caminador horas"
+                                                       id="tiempo_pot_cam_mins"
+                                                       maxlength="255" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <!--
+                                    <button type="button" class="btn btn-outline-success btn-lg btn-block"
+                                            onclick="myFunction()"
+                                    >Calcular
+                                    </button>
+                                    -->
+                                    <a href="{% url 'predecir' %}" class="btn btn-outline-success btn-lg btn-block">Predecir</a>
+
+                                    <br>
+                                    <div id="puntaje_predecido">
+                                        <!--
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="card bg-warning">
+                                                    <div class="card-body">
+                                                        <blockquote class="blockquote mb-0 text-light">
+                                                            <p class="text-light">Lorem
+                                                            ipsum
+                                                            dolor
+                                                            sit
+                                                            amet, consectetur
+                                                            adipiscing
+                                                            elit.Integer
+                                                            posuere
+                                                            erat
+                                                            a
+                                                            ante.</p>
+                                                            <footer class="blockquote-footer text-light">Someone famous in
+                                                                <cite title="Source Title">Source Title</cite></footer>
+                                                        </blockquote>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

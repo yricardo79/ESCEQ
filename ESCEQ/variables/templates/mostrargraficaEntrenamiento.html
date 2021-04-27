@@ -1,0 +1,64 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %} Generación de Reportes (Gráfico)  {% endblock %}
+{% block breadcrumb %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Gráficos</h1>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Table</a></li>
+                                <li class="active">Data table</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-9 offset-md-3 mr-auto ml-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Gráfico Entrenamiento</strong>
+                    </div>
+                    <div class="card-body card-block">
+                         <p class="text-muted m-b-15">
+                            Gráfico que ilustra la información con la cual se entreno el Modelo.
+                        </p>
+                        <form method="POST" enctype="multipart/form-data">                         
+                            
+                        {% csrf_token %}                           
+                            {% if error %}
+                                <h2>{{ error }}</h2>
+                            {% else %} 
+                                <p></p>            
+                                <div class="form-actions form-group">   
+                                   <a href="{% url 'graficaEntrenamiento' %}" class="btn btn-outline-success btn-sm float-center">
+                                    Mostrar Gráfico <i class="fas fa-file-image"></i>
+                                    </a>  
+                                </div>                            
+                            {% endif %}
+                        </form>                         
+                         {% if mensaje %}
+                             <p> {{ mensaje }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+{% endblock %}

@@ -15,8 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-#yoo
-#TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
+# yoo
+# TEMPLATE_DIR = os.path.join(BASE_DIR,"templatese")
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +30,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registroEquinos',
+    # Apps
+    'registro',
+    'ESCEQ.login',
+    'ESCEQ.Equinos',
+    'ESCEQ.veterinarios',
+    'ESCEQ.variables',
+    'ESCEQ.entornoSalud',
+    # Libs
+    'import_export',
+    'ckeditor',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +67,8 @@ ROOT_URLCONF = 'ESCEQ.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/JohannaFarfan/Desktop/Tesis/01_proyecto/ESCEQ/ESCEQ/template'],
+        # --'DIRS': ['C:/Users/JohannaFarfan/Desktop/Tesis/01_proyecto/ESCEQ/templates'],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,21 +83,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ESCEQ.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+    'sqlite': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'esceq',
         'USER': 'root',
-        'PASSWORD': 'hola1234',
+        'PASSWORD': '1234',
         'HOST': '127.0.0.1',
         'DATABASE_PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -107,11 +119,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Configuración del CKEDITOR
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-#LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
@@ -122,18 +139,45 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+# MEDIA_URL = '/static/imagenes/'
+
+# STATIC_URL = '/static/static/'
+# MEDIA_URL = '/static/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, '/static/imagenes/')
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = '/login/'
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-#Configuraciones para permitir el envio de correos por gmail
+
+# URL Absoluta, para trabajar con los archivos
+MEDIA_URL = '/media/'
+# Carpeta raiz, donde quedan los archivops media
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# # Url de para la referenciación de las imagenes
+# MEDIA_URL = '/media/'
+# Directorio físico
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+
+# Use BOOTSTRAP3 si está usando Bootstrap 3
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
+
+# Configuraciones para permitir el envio de correos por gmail
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "esceq.comentarios.app"
 EMAIL_HOST_PASSWORD = "esceq2020+"
-
-

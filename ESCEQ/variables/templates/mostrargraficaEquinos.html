@@ -1,0 +1,93 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %} Registro de equino {% endblock %}
+{% block breadcrumb %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Dashboard</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Table</a></li>
+                                <li class="active">Data table</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-9 offset-md-3 mr-auto ml-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Gráfico Equino vs Puntaje</strong>
+                    </div>
+                    <div class="card-body card-block">
+                        <form action="{% url 'graficaEquinosPuntaje' %}" method="POST">
+                            {% csrf_token %}
+                            {% if form.errors %}
+                                <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                                    <span class="badge badge-pill badge-danger">Atención</span>
+                                    Ha ocurrido un error al generar el gráfico}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <br>{{ error }}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% if error %}
+                                <h2>{{ error }}</h2>
+                            {% else %}
+                                <div class="form-group"> 
+                                        <label for="labelChip">Chip Equino </label>
+                                     <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></div> 
+                                        <input  type="text" class="form-control" name="chipequino" value="">   
+                                    </div>                                 
+                                </div>
+                                <div class="form-actions form-group">                                
+                                <button type="submit" class="btn btn-outline-success btn-sm float-right">
+                                    Generar gráfico
+                                    <i class="fas fa-file-image"></i>
+                                </button>                              
+                            </div>                            
+                            {% endif %}
+                        </form>                         
+                         {% if mensaje %}
+                             <p> {{ mensaje }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="col-xs-3 col-sm-3">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Registro</strong>
+                    </div>
+                    <div class="card-body card-block">
+                    </div>
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+
+{% endblock %}

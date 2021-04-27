@@ -1,0 +1,68 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %} Puntaje Competencia  {% endblock %}
+{% block breadcrumb %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Dashboard</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Table</a></li>
+                                <li class="active">Data table</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-9 offset-md-3 mr-auto ml-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Error</strong>
+                    </div>             
+                        {% csrf_token %}                           
+                            {% if error %}
+                                <h2>{{ error }}</h2>
+                            {% else %} 
+                            <div id="resultado_calculado" class="row" style="display">
+                            <div class="col-md-12">
+                                <section class="card">
+                                    <div class="alert alert-danger" role="alert">
+                                        <div class="media">
+                                            <div class="media-left media-middle">
+                                                <span class="fa-stack fa-3x text-center">
+                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                </span>
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="text-light">                                                          
+                                                {% endif %}                                    
+                                                {% if mensaje %}
+                                                    <h3> {{ mensaje }}</h3>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>          
+                        </div>
+                    </div>
+                </div>           
+            </div>
+        </div>
+{% endblock %}

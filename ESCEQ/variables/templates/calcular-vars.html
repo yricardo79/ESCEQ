@@ -1,0 +1,333 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %} Registro de variables {% endblock %}
+{% block breadcrumb %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Dashboard</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Table</a></li>
+                                <li class="active">Data table</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-9 offset-md-3 mr-auto ml-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Registro de Variables</strong>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted m-b-15">
+                            Módulo para el registro de las variables <strong>Clínicas</strong> y de
+                            <strong>Manejo</strong> de equinos
+                        </p>
+
+                        <div id="tabs_variables">
+                            <div class="tab-content" id="pills-tabContent">
+                                <!-- Tabs Variables clínicas-->
+                                <div class="tab-pane fade show active" id="pills-clinica" role="tabpanel"
+                                     aria-labelledby="pills-clinica-tab">
+                                    <h1>Variables clínicas</h1>
+                                    <hr>
+                                    <form action="{% url 'predecir' %}" method="POST">
+                                        {% csrf_token %}
+                                        {% if error %}
+                                            <h2>{{ error }}</h2>
+                                        {% else %}
+                                            <!-- Campo para el chip -->
+                                            <div class="form-group">
+                                                {{ form.chip.label }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                                    </div>
+                                                    {{ form.chip }}
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Campo para la claudicación -->
+                                            <div class="form-group">
+                                                {{ form.claudicacion.label }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                                    </div>
+                                                    {{ form.claudicacion }}
+                                                </div>
+                                            </div>
+
+                                            <!-- Campo para grado de claudicación  -->
+                                            <div class="form-group">
+                                                {{ form.grado_claudi.label }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                                    </div>
+                                                    {{ form.grado_claudi }}
+                                                </div>
+                                            </div>
+                                              <!-- Campo para presencia en sangre -->
+                                            <div class="form-group">
+                                                {{ form.presencia_sangre.label }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                                    </div>
+                                                    {{ form.presencia_sangre}}
+                                                </div>
+                                            </div>
+                                            <!-- Campo para Olleres -->
+                                            <div class="form-group">
+                                                {{ form.olleres.label }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                                    </div>
+                                                    {{ form.olleres}}
+                                                </div>
+                                            </div>
+                                             <!-- Campo para Boca -->
+                                            <div class="form-group">
+                                                {{ form.boca.label }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                                    </div>
+                                                    {{ form.boca}}
+                                                </div>
+                                            </div>
+                                             <!-- Campo para Heridas sangrantes -->
+                                            <div class="form-group">
+                                                {{ form.heridas_sangrantes.label }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                                    </div>
+                                                    {{ form.heridas_sangrantes}}
+                                                </div>
+                                            </div>   
+                                               <!-- Campo para Fatiga -->
+                                            <div class="form-group">
+                                                {{ form.evidencia_fat_sud.label }}
+                                                <div class="input-group">
+                                                    <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                                    </div>
+                                                    {{ form.evidencia_fat_sud}}
+                                                </div>
+                                            </div>                                       
+                                            <!-- fin vars clinicas -->
+                                    <div class="alert alert-warning" role="alert">
+                                        ¡Debe completar <strong>TODOS los campos</strong> de este formulario, para
+                                        continuar con el proceso de registro!
+                                        <hr>
+                                        <small>Luego de clic en el botón Manejo</small>
+                                    </div>
+                                </div>
+                                <!-- FIN Tabs Variables clínicas-->
+
+                                <!-- Tabs Variables Manejo-->
+                                <div class="tab-pane fade" id="pills-manejo" role="tabpanel"
+                                     aria-labelledby="pills-manejo-tab">
+                                    <h1>Variables de Manejo</h1>
+                                    <hr>
+                                     <!-- Campo para grano  -->                                            
+                                    <div class="form-group">
+                                        {{ form.grano.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.grano }}
+                                        </div>
+                                    </div>
+                                     <!-- Campo para forraje  -->                                            
+                                    <div class="form-group">
+                                        {{ form.forraje.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.forraje}}
+                                        </div>
+                                    </div>
+                                    <!-- Campo para suplemento  -->                                            
+                                    <div class="form-group">
+                                        {{ form.suplemento.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.suplemento}}
+                                        </div>
+                                    </div>
+                                    <!-- Campo para sup_oral  -->                                            
+                                    <div class="form-group">
+                                        {{ form.sup_oral.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.sup_oral}}
+                                        </div>
+                                    </div>
+                                     <!-- Campo para sup_intravenoso  -->                                            
+                                    <div class="form-group">
+                                        {{ form.sup_intravenoso.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.sup_intravenoso}}
+                                        </div>
+                                    </div>
+                                    <!-- Campo para dieta_veces_dia  -->                                            
+                                    <div class="form-group">
+                                        {{ form.dieta_veces_dia.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.dieta_veces_dia}}
+                                        </div>
+                                    </div>
+                                     <!-- Campo para dieta_horarios  -->                                            
+                                    <div class="form-group">
+                                        {{ form.dieta_horarios.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.dieta_horarios}}
+                                        </div>
+                                    </div>
+                                    <!-- Campo para calentamiento_previo  -->                                            
+                                    <div class="form-group">
+                                        {{ form.calentamiento_previo.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.calentamiento_previo}}
+                                        </div>
+                                    </div>
+                                     <!-- Campo para hora_calentamiento  -->                                            
+                                    <div class="form-group">
+                                        {{ form.hora_calentamiento.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.hora_calentamiento}}
+                                        </div>
+                                    </div>
+                                      <!-- Campo para minuto_calentamiento  -->                                            
+                                    <div class="form-group">
+                                        {{ form.minuto_calentamiento.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.minuto_calentamiento}}
+                                        </div>
+                                    </div>
+                                      <!-- Campo para trabajo_cantidad_horas  -->                                            
+                                    <div class="form-group">
+                                        {{ form.trabajo_cantidad_horas.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.trabajo_cantidad_horas}}
+                                        </div>
+                                    </div>
+                                      <!-- Campo para trabajo_cantidad_diaria  -->                                            
+                                    <div class="form-group">
+                                        {{ form.trabajo_cantidad_diaria.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.trabajo_cantidad_diaria}}
+                                        </div>
+                                    </div>
+                                     <!-- Campo para trabajo_cantidad_semanal  -->                                            
+                                    <div class="form-group">
+                                        {{ form.trabajo_cantidad_semanal.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.trabajo_cantidad_semanal}}
+                                        </div>
+                                    </div>
+                                    <!-- Campo para trabajo_potrero  -->                                            
+                                    <div class="form-group">
+                                        {{ form.trabajo_potrero.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.trabajo_potrero}}
+                                        </div>
+                                    </div>
+                                    <!-- Campo para trabajo_caminador  -->                                            
+                                    <div class="form-group">
+                                        {{ form.trabajo_caminador.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.trabajo_caminador}}
+                                        </div>
+                                    </div>
+                                     <!-- Campo para tiempo_pot_cam_horas  -->                                            
+                                    <div class="form-group">
+                                        {{ form.tiempo_pot_cam_horas.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.tiempo_pot_cam_horas}}
+                                        </div>
+                                    </div>
+                                     <!-- Campo para tiempo_pot_cam_mins  -->                                            
+                                    <div class="form-group">
+                                        {{ form.tiempo_pot_cam_mins.label }}
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fas fa-horse-head"></i></i>
+                                            </div>
+                                            {{ form.tiempo_pot_cam_mins}}
+                                        </div>
+                                    </div>
+                                 <div class="form-actions form-group">                                
+                                <button type="submit" class="btn btn-outline-success btn-lg btn-block">
+                                    Calcular Puntaje
+                                    <i class="fas fa-calculator"></i>
+                                </button>
+                                <!-- <a href="{% url 'predecir' %}"
+                                    class="btn btn-outline-success btn-lg btn-block">
+                                    Calcular Puntaje
+                                    <i class="fas fa-calculator"></i>
+                                </a>-->
+                            </div>
+
+                                </div>
+                                <!-- FIN Tabs Variables Manejo-->
+                            </div>
+
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-clinica-tab" data-toggle="pill"
+                                       href="#pills-clinica"
+                                       role="tab" aria-controls="pills-clinica" aria-selected="true">Clinicas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-manejo-tab" data-toggle="pill" href="#pills-manejo"
+                                       role="tab" aria-controls="pills-manejo" aria-selected="false">Manejo</a>
+                                </li>
+                            </ul>                           
+                            {% endif %}
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

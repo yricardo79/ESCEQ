@@ -1,0 +1,74 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %} Cargue Archivo  {% endblock %}
+{% block breadcrumb %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Procesar Archivo</h1>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Table</a></li>
+                                <li class="active">Data table</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-9 offset-md-3 mr-auto ml-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Cargue/Descargue del Arhivo</strong>
+                    </div>
+                    <div class="card-body card-block">
+                         <p class="text-muted m-b-15">
+                            Módulo para realizar el cargue del archivo
+                        </p>
+                        <form method="POST" enctype="multipart/form-data">                         
+                           <!--<input type="file"  name="myfile" >-->   
+                            <a href="{% url 'exportar' %}" class="btn btn-outline-info btn-sm float-right">
+                                Descargar csv <i class="fas fa-download"></i>
+                            </a>                                                      
+                           <input type="file" name="myfile">                                           
+                            
+                        {% csrf_token %}                           
+                            {% if error %}
+                                <h2>{{ error }}</h2>
+                            {% else %} 
+                                <p></p>            
+                                <div class="form-actions form-group">
+                                    <button type="reset" class="btn btn-outline-warning btn-sm">
+                                        <i class="fas fa-window-close"></i>
+                                        CANCELAR
+                                    </button>
+                                    <button type="submit" class="btn btn-outline-success btn-sm float-right">
+                                        Procesar Archivo
+                                        <i class="fas fa-save"></i>
+                                    </button>
+                                </div>                            
+                            {% endif %}
+                        </form>                         
+                         {% if mensaje %}
+                             <p> {{ mensaje }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+{% endblock %}

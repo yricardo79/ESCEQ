@@ -13,21 +13,27 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls import include
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from registroEquinos import views
-from registroEquinos.views import saludo, despedida, registroEquino, regHistoriaClinica
+from registro.views import IndexView
+
+admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('busqueda_equinos/', views.busqueda_equinos),
-    path('buscar/', views.bus_ser_equ),
-    path('contacto/', views.Contacto),
-
-    path('saludo/', saludo),
-    path('despedida/', despedida),
-    path('registroEquino/', registroEquino),
-    path('regHistoriaClinica/', regHistoriaClinica),
-
+    path('', IndexView.as_view(), name='index'),
+    path('login/', include('ESCEQ.login.urls')),
+    path('', include('ESCEQ.Equinos.urls')),
+    path('', include('ESCEQ.variables.urls')),
+    path('', include('ESCEQ.veterinarios.urls')),
+    path('', include('ESCEQ.entornoSalud.urls')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,159 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %} Registro de equino {% endblock %}
+{% block breadcrumb %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Equino</h1>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Table</a></li>
+                                <li class="active">Data table</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-9 offset-md-3 mr-auto ml-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Registro de equino</strong>
+                    </div>
+                    <div class="card-body card-block">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% if form.errors %}
+                                <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                                    <span class="badge badge-pill badge-danger">Atención</span>
+                                    Ha ocurrido un error al guardar
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <br>{{ error }}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% if error %}
+                                <h2>{{ error }}</h2>
+                            {% else %}
+                                <div class="form-group">
+                                    {{ form.chip.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-id-card-alt"></i></div>
+                                        {{ form.chip }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.nom_equino.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></div>
+                                        {{ form.nom_equino }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.fec_nacimiento.label }} (DD/MM/AAAA)
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-book"></i></div>
+                                        {{ form.fec_nacimiento }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.adv_manejo.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-book"></i></div>
+                                        {{ form.adv_manejo }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.sexo.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-book"></i></div>
+                                        {{ form.sexo }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.color.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-book"></i></div>
+                                        {{ form.color }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.raza.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-book"></i></div>
+                                        {{ form.raza }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.comportamiento.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-book"></i></div>
+                                        {{ form.comportamiento }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.disciplia.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-book"></i></div>
+                                        {{ form.disciplia }}
+                                    </div>
+                                </div>
+                                <!--
+                                <div class="form-group">
+                                    { { form.foto_equ.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-book"></i></div>
+                                        <input type="file" name="txtImagen" id="txtImagen">
+                                    </div>
+                                </div>
+                                -->
+                                <div class="form-actions form-group">
+                                    <button type="reset" class="btn btn-outline-warning btn-sm">
+                                        <i class="fas fa-window-close"></i>
+                                        CANCELAR
+                                    </button>
+                                    <button type="submit" class="btn btn-outline-success btn-sm float-right">
+                                        GUARDAR
+                                        <i class="fas fa-save"></i>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="col-xs-3 col-sm-3">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Registro</strong>
+                    </div>
+                    <div class="card-body card-block">
+                    </div>
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+
+{% endblock %}

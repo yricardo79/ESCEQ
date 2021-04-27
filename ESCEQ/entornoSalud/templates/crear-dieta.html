@@ -1,0 +1,297 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block titulo %} Registro dieta {% endblock %}
+{% block breadcrumb %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Dieta</h1>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-sm-8">
+                    <div class="page-header float-right">
+                        <div class="page-title">
+                            <ol class="breadcrumb text-right">
+                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="#">Table</a></li>
+                                <li class="active">Data table</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-9 offset-md-3 mr-auto ml-auto">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Registro dieta </strong>
+                    </div>
+                    <div class="card-body card-block">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% if form.errors %}
+                                <div class="sufee-alert alert with-close alert-danger alert-dismissible fade show">
+                                    <span class="badge badge-pill badge-danger">Atención</span>
+                                    Ha ocurrido un error al guardar
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <br>{{ error }}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% if error %}
+                                <h2>{{ error }}</h2>
+                            {% else %}
+                                <div class="form-group">
+                                    {{ form.chip_equino.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.chip_equino }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.nombre_dieta.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.nombre_dieta }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.id_fecha.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.id_fecha }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.comps_nutricionales_id.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.comps_nutricionales_id }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.veterinario_cedula.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.veterinario_cedula }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.estado.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.estado }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.id_des_conc.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.id_des_conc }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.cant_des_conc.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.cant_des_conc }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.id_alm_con.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.id_alm_con }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.cant_alm_conc.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.cant_alm_conc }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.id_com_conc.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.id_com_conc }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.cant_com_conc.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.cant_com_conc }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.id_des_forraje.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.id_des_forraje }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.cant_des_forraje.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.cant_des_forraje }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.id_alm_forraje.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.id_alm_forraje }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.cant_alm_forraje.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.cant_alm_forraje }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.id_des_suple.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.id_des_suple }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.cant_des_suple.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.cant_des_suple }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.id_alm_suple.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.id_alm_suple }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.cant_alm_suple.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.cant_alm_suple }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.id_com_suple.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.id_com_suple }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.cant_com_suple.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.cant_com_suple }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.hora_des_conc.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.hora_des_conc }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.hora_des_forraje.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.hora_des_forraje }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.hora_des_suple.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.hora_des_suple }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.hora_alm_suple.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.hora_alm_suple }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.hora_alm_forraje.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.hora_alm_forraje }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.hora_alm_conc.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.hora_alm_conc }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.hora_com_suple.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.hora_com_suple }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.hora_com_forraje.label }}
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fas fa-horse-head"></i></i></div>
+                                        {{ form.hora_com_forraje }}
+                                    </div>
+                                </div>
+                                <div class="form-actions form-group">
+                                    <button type="reset" class="btn btn-outline-warning btn-sm">
+                                        <i class="fas fa-window-close"></i>
+                                        CANCELAR
+                                    </button>
+                                    <button type="submit" class="btn btn-outline-success btn-sm float-right">
+                                        GUARDAR
+                                        <i class="fas fa-save"></i>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--
+            <div class="col-xs-3 col-sm-3">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Registro</strong>
+                    </div>
+                    <div class="card-body card-block">
+                    </div>
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+
+{% endblock %}
