@@ -180,8 +180,8 @@ def graficaEntrenamiento(request):
         fig, ax = plt.subplots()        
         ax.plot(eje_x, eje_y, '-', label="yellow Bar", color='y')
         # fig.set_size_inches(15,7)
-        ax.set_xlabel("Eje X-Cantidad Caballos")
-        ax.set_ylabel("Eje Y-Puntaje")
+        ax.set_xlabel("Eje X-(Cantidad Caballos)")
+        ax.set_ylabel("Eje Y-(Puntaje)")
         ax.set_title("Gráfico Variables (Cantidad de Caballos) - Puntaje")
         # Creamos los ejes
         # canvas=FigureCanvas(fig)
