@@ -27,15 +27,22 @@ class CrearVars(CreateView):
     form_class = VarsForm
     success_url = reverse_lazy('calcular-vars')
 
+def validar_extension (ext):
+    if ext == '.csv':
+        return 'Correcto'
+    else:
+        return 'Incorrecto'
 
 def list(request):
     try:
         if request.method == 'POST' and request.FILES['myfile']:
             myfile = request.FILES['myfile']
             extension = os.path.splitext(str(request.FILES['myfile']))[1]
+            valida_ext = validar_extension(extension)
             # return HttpResponse(myfile)
             # partes_archivo=myfile.split('.')
-            if extension == '.csv':
+            #if extension == '.csv':
+            if valida_ext == 'Correcto': 
                 resultado = handle_uploaded_file(myfile)
                 if resultado == 0:
                     if path.exists('ESCEQ/variables/Reportes/archivo/VariablesEquinas.csv'):
