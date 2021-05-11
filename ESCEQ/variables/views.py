@@ -27,11 +27,12 @@ class CrearVars(CreateView):
     form_class = VarsForm
     success_url = reverse_lazy('calcular-vars')
 
-def validar_extension (ext):
+def validar_extension(ext):
     if ext == '.csv':
         return 'Correcto'
     else:
         return 'Incorrecto'
+
 
 def list(request):
     try:

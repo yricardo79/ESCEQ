@@ -12,6 +12,7 @@ urlpatterns = [
     path('capturaExcepciones/', TemplateView.as_view(template_name='capturaExcepciones.html'),
          name='capturaExcepciones'),
     path('list/', views.list, name='list'),
+    path('validar_extension/', views.validar_extension, name='validar_extension'),
     path('mostrargraficaEntrenamiento/', TemplateView.as_view(template_name='mostrargraficaEntrenamiento.html'),
          name='mostrargraficaEntrenamiento'),
     path('mostrarKNN/', TemplateView.as_view(template_name='mostrarKNN.html'), name='mostrarKNN'),
